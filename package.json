@@ -27,6 +27,6 @@
     "tsc": "tsc",
     "build": "npm-run-all clean tsc",
     "start": "node ."
-  },
+  }
 
 }
