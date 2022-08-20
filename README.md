@@ -22,3 +22,7 @@ npm i -D eslint @typescript-eslint/eslint-plugin @typescript-eslint/parser
 eslintパッケージはESLintのパッケージで、@typescript-eslint/eslint-pluginパッケー
 ジはESLintのTypeScript用プラグインです。また、@typescript-eslint/parserパッケージは、
 TypeScriptをESLintが理解できるようパースする役割を担うものです。
+
+## tsconfig
+各オプション及びその意味
+![tsconfig](./readme_img/tsconfig.png)
