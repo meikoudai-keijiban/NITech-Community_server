@@ -62,3 +62,22 @@ $ nodenv global 16.3.0
 ![tsconfig](./readme_img/tsconfig.png)
 
 
+### routing-controllers
+---------------------------------------------
+npm audit fix --force を使って、routing-controllersの「controllers?: string[];」エラーを解決
+
+https://www.jianshu.com/p/60591cfc6952 （中国語）
+
+--------------------------------------------
+
+使用方法は、https://github.com/typestack/routing-controllers#example-of-usage  に参照
+
+--------------------------------------------
+
+TypeError: Reflect.getMetadata is not a function
+解決方法：app.js(メインファイル)で、"reflect-metadata"をインポートする。
+参照：https://github.com/typestack/class-transformer/issues/52 
+
+--------------------------------------------
+
+
