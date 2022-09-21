@@ -15,20 +15,31 @@
 //   "include": ["src/**/*"]
 // }
 
+// {
+//   "compileOnSave": true,
+//   "compilerOptions": {
+//     "target": "ES5",
+//     "module": "commonjs",
+//     "sourceMap": true,
+//     "outDir": "./dist",
+//     "strict": true,
+//     "moduleResolution": "node",
+//     "esModuleInterop": true,
+//     "skipLibCheck": true,
+//     "forceConsistentCasingInFileNames": true,
+//     "emitDecoratorMetadata": true,
+//     "experimentalDecorators": true,
+//     "strictPropertyInitialization": false
+//   },
+//   "include": ["src/**/*"]
+// }
+
 {
-  "compileOnSave": true,
+  "extends": "@tsconfig/recommended/tsconfig.json",
   "compilerOptions": {
-    "target": "ES5",
-    "module": "commonjs",
-    "sourceMap": true,
-    "outDir": "./dist",
-    "strict": true,
-    "moduleResolution": "node",
-    "esModuleInterop": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
+    "outDir": "dist/",
+    "strictPropertyInitialization": false,
+    "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "experimentalDecorators": true
-  },
-  "include": ["src/**/*"]
+  }
 }
