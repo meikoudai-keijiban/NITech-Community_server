@@ -4,7 +4,6 @@ import { ConnectionOptions } from "typeorm";
 import { User } from "./models/User";
 import { Category } from "./models/Category";
 import { Posting } from "./models/Posting";
-import { Photo } from "./models/Photo";
 import { Comment } from "./models/Comment";
 
 const databaseConnectionOptions: ConnectionOptions = {
@@ -14,7 +13,7 @@ const databaseConnectionOptions: ConnectionOptions = {
     username: "test",
     password: "test",
     database: "nicDatabase",
-    entities: [User, Category, Posting, Photo, Comment],
+    entities: [User, Category, Posting, Comment],
     synchronize: true,
 }
 
