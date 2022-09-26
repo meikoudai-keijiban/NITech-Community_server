@@ -5,6 +5,7 @@ import { User } from "./models/User";
 import { Category } from "./models/Category";
 import { Posting } from "./models/Posting";
 import { Photo } from "./models/Photo";
+import { Comment } from "./models/Comment";
 
 const databaseConnectionOptions: ConnectionOptions = {
     type: "mariadb",
@@ -13,8 +14,8 @@ const databaseConnectionOptions: ConnectionOptions = {
     username: "test",
     password: "test",
     database: "nicDatabase",
-    entities: [User, Category, Posting, Photo],
-    // synchronize: true,
+    entities: [User, Category, Posting, Photo, Comment],
+    synchronize: true,
 }
 
 const connectionOptions: ConnectionOptions[] = [
