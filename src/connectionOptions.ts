@@ -2,9 +2,7 @@ import "reflect-metadata";
 import { ConnectionOptions } from "typeorm";
 
 import { User } from "./models/User";
-import { Category } from "./models/Category";
 import { Posting } from "./models/Posting";
-import { Comment } from "./models/Comment";
 
 const databaseConnectionOption: ConnectionOptions = {
     type: "mariadb",
@@ -13,7 +11,7 @@ const databaseConnectionOption: ConnectionOptions = {
     username: process.env.MYSQL_USERNAME,
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE,
-    entities: [User, Category, Posting, Comment],
+    entities: [User, Posting],
     // migrationsを使え！
     // synchronize: true,
 }
