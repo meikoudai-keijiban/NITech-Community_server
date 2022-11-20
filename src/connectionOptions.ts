@@ -6,19 +6,20 @@ import { Category } from "./models/Category";
 import { Posting } from "./models/Posting";
 import { Comment } from "./models/Comment";
 
-const databaseConnectionOptions: ConnectionOptions = {
+const databaseConnectionOption: ConnectionOptions = {
     type: "mariadb",
-    host: "localhost",
-    port: 3306,
-    username: "test",
-    password: "test",
-    database: "nicDatabase",
+    host: process.env.MYSQL_HOST,
+    port: Number(process.env.MYSQL_PORT),
+    username: process.env.MYSQL_USERNAME,
+    password: process.env.MYSQL_PASSWORD,
+    database: process.env.MYSQL_DATABASE,
     entities: [User, Category, Posting, Comment],
-    synchronize: true,
+    // migrationsを使え！
+    // synchronize: true,
 }
 
 const connectionOptions: ConnectionOptions[] = [
-    databaseConnectionOptions,
+    databaseConnectionOption,
 ];
 
 export default connectionOptions;
