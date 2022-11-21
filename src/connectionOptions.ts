@@ -6,14 +6,15 @@ import { Posting } from "./models/Posting";
 
 const databaseConnectionOption: ConnectionOptions = {
     type: "mariadb",
+    name: "nicDatabase",
+    entities: [User, Posting],
     host: process.env.MYSQL_HOST,
     port: Number(process.env.MYSQL_PORT),
     username: process.env.MYSQL_USERNAME,
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE,
-    entities: [User, Posting],
-    // migrationsを使え！
-    // synchronize: true,
+    migrations: ["scr/migrations/*.ts"],
+    migrationsRun: true,
 }
 
 const connectionOptions: ConnectionOptions[] = [

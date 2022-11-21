@@ -2,6 +2,7 @@ import "reflect-metadata"
 import passport from "passport";
 import { createExpressServer, Action } from "routing-controllers";
 import { createConnections } from "typeorm"
+require('dotenv').config()
 
 import connectionOptions from "./connectionOptions";
 import { UserController } from "./controllers/UserController";
