@@ -1,29 +1,20 @@
-import { Controller, Param, Body, Get, Post, Put, Delete } from "routing-controllers";
+import { Controller, Param, Body, Get, Post, Put, Delete, JsonController, UseBefore } from "routing-controllers";
+import { Repository, getConnection } from "typeorm";
+import passport from "passport";
 
-@Controller()
+import { User } from "../models/User";
+
+@JsonController()
 export class UserController {
-    @Get('/users')
-    getAll() {
-        return 'This action returns all users';
+    private readonly userRepository: Repository<User>;
+
+    constructor() {
+        this.userRepository = getConnection("nicDatabase").getRepository(User);
     }
 
-    @Get('/users/:id')
-    getOne(@Param('id') id: number) {
-        return 'This action return user #' + id;
-    }
-
-    @Post('/users')
-    Post(@Body() user: any) {
-        return 'Saving user...';
-    }
-
-    @Put('/users/:id')
-    put(@Param('id') id: number, @Body() user: any) {
-        return 'Updating a user...';
-    }
-
-    @Delete('/users/:id')
-    remove(@Param('id') id: number) {
-        return 'Removing user...';
+    @Get("/test_api")
+    @UseBefore(passport.authenticate("oauth-bearer", {session: false}))
+    public async getTest(): Promise<any> {
+        return { message: "Hello World!" }
     }
 }
