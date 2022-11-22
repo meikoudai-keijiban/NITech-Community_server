@@ -10,7 +10,7 @@ import { User } from "./models/User";
 import { BearerStrategy } from "passport-azure-ad";
 import { createBearerStrategy } from "./middlewares/createBearerStrategy";
 
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 const routes = [UserController];
 
