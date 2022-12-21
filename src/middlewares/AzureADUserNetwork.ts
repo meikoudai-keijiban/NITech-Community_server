@@ -9,7 +9,7 @@ export class AzureADUserNetwork {
                 Authorization: `Bearer ${accessTokenForMicrosoftGraph}`, //Bearerが必要？？
             },
             params: {
-                $select: "id,officeLocation"
+                $select: "id,officeLocation,department,displayName"
             }
         });
 
