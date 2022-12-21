@@ -35,6 +35,9 @@ async function bearerStrategyVerifyFunction(req: Request, token: ITokenPayload, 
             "https://graph.microsoft.com/User.Read"
         )
 
+        //comment debug
+        console.log(req.headers.authorization!.split(" ")[1])
+
         const azureADUser: AzureADUser = await azureADUserNetwork.get(azureADToken.access_token);
 
         const user: User = await userMaker.make(azureADUser);
