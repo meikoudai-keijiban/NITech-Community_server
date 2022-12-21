@@ -1,4 +1,4 @@
-import { Get, JsonController, UseBefore } from "routing-controllers";
+import { Get, JsonController, UseBefore, CurrentUser } from "routing-controllers";
 import { Repository, getConnection } from "typeorm";
 import passport from "passport";
 
@@ -14,7 +14,8 @@ export class UserController {
 
     @Get("/test_api")
     @UseBefore(passport.authenticate("oauth-bearer", {session: false})) //調べよ
-    public async getTest(): Promise<any> {
-        return { message: "Hello World!" }
+    public async getTest(@CurrentUser({ required: true }) user: User): Promise<any> {
+        return user
     }
+    
 }
