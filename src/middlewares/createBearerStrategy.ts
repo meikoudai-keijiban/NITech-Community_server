@@ -32,11 +32,8 @@ async function bearerStrategyVerifyFunction(req: Request, token: ITokenPayload, 
 
         const azureADToken: AzureADToken = await azureADTokenNetwork.acquire(
             req.headers.authorization!.split(" ")[1],
-            "https://graph.microsoft.com/User.Read"
+            "User.Read"
         )
-
-        //comment debug
-        console.log(req.headers.authorization!.split(" ")[1])
 
         const azureADUser: AzureADUser = await azureADUserNetwork.get(azureADToken.access_token);
 
