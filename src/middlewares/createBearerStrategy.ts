@@ -9,7 +9,7 @@ import { AzureADTokenNetwork } from "./AzureADTokenNetwork";
 
 
 const bearerStrategyOption: IBearerStrategyOptionWithRequest = {
-    identityMetadata: `https://login.microsoftonline.com/${process.env.AZURE_AD_TENANT_ID}/v2.0/.well-known/openid-configuration`,
+    identityMetadata: `https://login.microsoftonline.com/${process.env.AZURE_AD_TENANT_ID}/oauth2/v2.0/authorize`,
     clientID: String(process.env.AZURE_AD_CLIENT_ID),
     passReqToCallback: true,
     scope: ["Access"],

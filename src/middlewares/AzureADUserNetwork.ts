@@ -6,7 +6,7 @@ export class AzureADUserNetwork {
         const azureADUserResponse: AxiosResponse<AzureADUser> = await axios.get("/me", {
             baseURL: "https://graph.microsoft.com/v1.0",
             headers: {
-                Authorization: `Bearer ${accessTokenForMicrosoftGraph}`,
+                Authorization: `Bearer ${accessTokenForMicrosoftGraph}`, //Bearerが必要？？
             },
             params: {
                 $select: "id,officeLocation"
