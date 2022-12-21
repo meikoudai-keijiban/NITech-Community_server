@@ -11,8 +11,9 @@ export class UserMaker {
 
     public make(azureADUser: AzureADUser): Promise<User> {
         const user: User = {
-            id: azureADUser.id,
-            nitechUserId: azureADUser.officeLocation,
+            id: azureADUser.officeLocation,
+            name: azureADUser.displayName,
+            department: azureADUser.department
         };
 
         return this.userRepository.save(user);
