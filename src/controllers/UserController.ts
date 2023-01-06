@@ -1,15 +1,15 @@
 import { Get, JsonController, UseBefore, CurrentUser } from "routing-controllers";
-import { Repository, getConnection } from "typeorm";
 import passport from "passport";
 
 import { User } from "../models/User";
+import { UserService } from "../services/UserService";
 
 @JsonController()
 export class UserController {
-    private readonly userRepository: Repository<User>;
+    private readonly userService: UserService;
 
     constructor() {
-        this.userRepository = getConnection("nicDatabase").getRepository(User);
+      this.userService = new UserService();
     }
 
     @Get("/test_api")
