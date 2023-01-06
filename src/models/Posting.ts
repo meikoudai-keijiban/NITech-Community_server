@@ -1,19 +1,22 @@
-import { Entity, PrimaryColumn, Column, JoinColumn, OneToOne, CreateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne, CreateDateColumn } from "typeorm";
 import { User } from "./User";
 
 @Entity()
 export class Posting {
-    @PrimaryColumn()
+    @PrimaryGeneratedColumn()
     public id: string;
 
     @Column()
     public title: string;
 
-    @OneToOne(() => User)
+    @ManyToOne(() => User)
     @JoinColumn()
     public author: User;
 
-    @CreateDateColumn()
+    @CreateDateColumn({
+        type: 'timestamp',
+        default: ()=>"now()",
+    })
     public postDate: Date;
 
     @Column()
