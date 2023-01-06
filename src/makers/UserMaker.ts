@@ -1,21 +1,26 @@
-import { Repository, getConnection } from "typeorm";
 import { AzureADUser } from "../models/AzureADUser";
 import { User } from "../models/User";
+import { UserService } from "../services/UserService";
 
 export class UserMaker {
-    private readonly userRepository: Repository<User>;
+    private readonly userService: UserService;
 
     constructor() {
-        this.userRepository = getConnection("nicDatabase").getRepository(User);
+        this.userService = new UserService();
     }
 
-    public make(azureADUser: AzureADUser): Promise<User> {
-        const user: User = {
-            id: azureADUser.officeLocation,
-            name: azureADUser.displayName,
-            department: azureADUser.department
-        };
+    public async make(azureADUser: AzureADUser): Promise<User> {
+        const isUser: User | null = await this.userService.userExists(azureADUser.officeLocation);
 
-        return this.userRepository.save(user);
+        if (isUser) {
+            return isUser;
+        } else {
+            const user: User = {
+                id: azureADUser.officeLocation,
+                name: azureADUser.displayName,
+                department: azureADUser.department
+            };
+            return this.userService.save(user);
+        }
     }
 }

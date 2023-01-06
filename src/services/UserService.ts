@@ -8,4 +8,17 @@ export class UserService {
         this.userRepository = getConnection("nicDatabase").getRepository(User);
     }
 
+    public save(user: User): Promise<User> {
+        return this.userRepository.save(user);
+    }
+
+    public userExists(id: string): Promise<User | null> {
+        return this.userRepository.findOne({
+            where: {
+                id: id
+            }
+        })
+    }
+
+    
 }
