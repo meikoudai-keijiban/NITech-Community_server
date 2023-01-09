@@ -5,7 +5,7 @@ import { Posting } from "./Posting";
 @Entity()
 export class Comment {
     @PrimaryGeneratedColumn()
-    public id: string;
+    public id?: string;
 
     @ManyToOne(() => Posting)
     @JoinColumn()

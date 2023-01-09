@@ -8,6 +8,12 @@ export class PostingService {
         this.postingRepository = getConnection("nicDatabase").getRepository(Posting);
     }
 
+    public findOnePostingById(id: string): Promise<Posting | null> {
+        return this.postingRepository.findOneBy({
+            id: id
+        })
+    }
+
     public findAllPostings(): Promise<Posting[]> {
         return this.postingRepository.find({
             order: {
@@ -41,5 +47,5 @@ export class PostingService {
     public savePosting(posting: Posting): Promise<Posting> {
         return this.postingRepository.save(posting);
     }
-    
+
 }

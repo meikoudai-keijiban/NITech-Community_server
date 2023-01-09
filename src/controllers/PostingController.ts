@@ -33,7 +33,10 @@ export class PostingController {
     @HttpCode(201)
     @Post("/postings")
     @UseBefore(passport.authenticate("oauth-bearer", { session: false }))
-    public post(@CurrentUser({ required: true }) user: User, @Body() rawPosting: RawPosting): Promise<Posting> {
+    public postPosting(
+      @CurrentUser({ required: true }) user: User,
+      @Body() rawPosting: RawPosting,
+    ): Promise<Posting> {
 
       const posting: Posting = {
         title: rawPosting.title,
