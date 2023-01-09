@@ -9,9 +9,16 @@ export class PostingService {
     }
 
     public findOnePostingById(id: string): Promise<Posting | null> {
-        return this.postingRepository.findOneBy({
-            id: id
-        })
+        return this.postingRepository.findOne(
+            {
+                where: {
+                    id: id
+                },
+                relations: {
+                    comments: true
+                }
+            }
+        )
     }
 
     public findAllPostings(): Promise<Posting[]> {
