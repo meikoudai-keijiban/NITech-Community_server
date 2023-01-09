@@ -1,4 +1,4 @@
-import { Get, Post, JsonController, UseBefore, CurrentUser, HttpCode, Param, Body } from "routing-controllers";
+import { Get, Post, JsonController, UseBefore, CurrentUser, HttpCode, QueryParam, Body } from "routing-controllers";
 import passport from "passport";
 
 import { User } from "../models/User";
@@ -23,11 +23,11 @@ export class CommentController {
     @UseBefore(passport.authenticate("oauth-bearer", {session: false}))
     public async postComment(
         @CurrentUser({ required: true }) user: User,
-        @Param('postingID') id: string,
+        @QueryParam("postingID") postingID: string,
         @Body() rawComment: RawComment
     ): Promise<Comment> {
 
-        const posting: Posting | null = await this.postingService.findOnePostingById(id);
+        const posting: Posting | null = await this.postingService.findOnePostingById(postingID);
 
         if(posting) {
             const comment: Comment = {
