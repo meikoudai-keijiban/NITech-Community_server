@@ -24,5 +24,5 @@ export class Posting {
     public content: string;
 
     @OneToMany(() => Comment, (comment) => comment.author)
-    comments: Comment[]
+    comments?: Comment[]
 }
