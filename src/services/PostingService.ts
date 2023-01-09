@@ -16,6 +16,10 @@ export class PostingService {
 
     public findAllPostings(): Promise<Posting[]> {
         return this.postingRepository.find({
+            select: {
+                id: true,
+                title: true,
+            },
             order: {
                 postDate: "DESC"
             },
@@ -30,6 +34,10 @@ export class PostingService {
 
     public findPartPostings(skip: number, take: number): Promise<Posting[]> {
         return this.postingRepository.find({
+            select: {
+                id: true,
+                title: true,
+            },
             order: {
                 postDate: "DESC"
             },
