@@ -15,6 +15,14 @@ export class PostingController {
       this.postingService = new PostingService();
     }
 
+    @Get("/postings/:postingID")
+    @UseBefore(passport.authenticate("oauth-bearer", {session: false}))
+    public async getPostingDetail(
+      @QueryParam("postingID") postingID: string
+    ): Promise<Posting | null> {
+        return this.postingService.findOnePostingById(postingID);
+    }
+
     @Get("/postings/all")
     @UseBefore(passport.authenticate("oauth-bearer", {session: false}))
     public async getAllPostings(): Promise<Posting[]> {
