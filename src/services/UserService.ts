@@ -12,6 +12,17 @@ export class UserService {
         return this.userRepository.save(user);
     }
 
+    public findUserDetail(accountID: string): Promise<User | null> {
+        return this.userRepository.findOne({
+            where: {
+                id: accountID
+            },
+            relations: {
+                comments: true
+            }
+        });
+    }
+
     public userExists(id: string): Promise<User | null> {
         return this.userRepository.findOne({
             where: {
