@@ -3,7 +3,7 @@ import { Entity, PrimaryColumn, Column } from "typeorm";
 @Entity()
 export class User {
     @PrimaryColumn()
-    public id: string;
+    public id?: string;
 
     // @Column({
     //     unique:true

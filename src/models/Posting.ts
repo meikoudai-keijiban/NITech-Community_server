@@ -4,7 +4,7 @@ import { User } from "./User";
 @Entity()
 export class Posting {
     @PrimaryGeneratedColumn()
-    public id: string;
+    public id?: string;
 
     @Column()
     public title: string;
