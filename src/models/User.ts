@@ -1,5 +1,6 @@
 import { Entity, PrimaryColumn, Column, OneToMany } from "typeorm";
 import { Posting } from "./Posting";
+import { Comment } from "./Comment"
 
 @Entity()
 export class User {
@@ -18,5 +19,8 @@ export class User {
     public department: string;
 
     @OneToMany(() => Posting, (posting) => posting.author)
-    Postings: Posting[]
+    postings: Posting[]
+
+    @OneToMany(() => Comment, (comment) => comment.author)
+    comments: Comment[]
 }
