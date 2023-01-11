@@ -19,8 +19,8 @@ export class User {
     public department: string;
 
     @OneToMany(() => Posting, (posting) => posting.author)
-    postings: Posting[]
+    postings?: Posting[]
 
     @OneToMany(() => Comment, (comment) => comment.author)
-    comments: Comment[]
+    comments?: Comment[]
 }
