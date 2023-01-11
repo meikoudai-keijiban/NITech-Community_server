@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, OneToMany } from "typeorm";
+import { Entity, PrimaryColumn, Column, OneToMany, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { Posting } from "./Posting";
 import { Comment } from "./Comment"
 
@@ -23,4 +23,10 @@ export class User {
 
     @OneToMany(() => Comment, (comment) => comment.author)
     comments?: Comment[]
+
+    @CreateDateColumn({ precision: 0 })
+    public createdAt?: Date;
+
+    @UpdateDateColumn({ precision: 0 })
+    public updatedAt?: Date;
 }

@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne, CreateDateColumn, OneToMany } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne, CreateDateColumn, UpdateDateColumn, OneToMany } from "typeorm";
 import { User } from "./User";
 import { Comment } from "./Comment";
 
@@ -25,4 +25,10 @@ export class Posting {
 
     @OneToMany(() => Comment, (comment) => comment.author)
     comments?: Comment[]
+
+    @CreateDateColumn({ precision: 0 })
+    public createdAt?: Date;
+
+    @UpdateDateColumn({ precision: 0 })
+    public updatedAt?: Date;
 }

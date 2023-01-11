@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne, CreateDateColumn } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, JoinColumn, ManyToOne, CreateDateColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./User";
 import { Posting } from "./Posting";
 
@@ -23,4 +23,10 @@ export class Comment {
 
     @Column()
     public content: string;
+
+    @CreateDateColumn({ precision: 0 })
+    public createdAt?: Date;
+
+    @UpdateDateColumn({ precision: 0 })
+    public updatedAt?: Date;
 }
