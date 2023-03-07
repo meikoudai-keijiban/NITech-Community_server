@@ -23,7 +23,7 @@ export class Posting {
     @Column()
     public content: string;
 
-    @OneToMany(() => Comment, (comment) => comment.author)
+    @OneToMany(() => Comment, (comment) => comment.id)
     comments?: Comment[]
 
     @CreateDateColumn({ precision: 0 })

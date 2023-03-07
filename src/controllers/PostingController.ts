@@ -17,6 +17,14 @@ export class PostingController {
 
     @Get("/postings/:postingID")
     @UseBefore(passport.authenticate("oauth-bearer", {session: false}))
+    public async getPostingByMaxId(
+      @QueryParam("postingID") postingID: string
+    ): Promise<Posting | null> {
+        return this.postingService.findOnePostingById(postingID);
+    }
+
+    @Get("/postings/:postingID")
+    @UseBefore(passport.authenticate("oauth-bearer", {session: false}))
     public async getPostingDetail(
       @QueryParam("postingID") postingID: string
     ): Promise<Posting | null> {
