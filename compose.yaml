@@ -7,7 +7,7 @@ services:
   db:
     image: mariadb:10.7
     environment:
-      MARIADB_ROOT_PASSWORD: rootpass
+      MARIADB_ROOT_PASSWORD: root
       MARIADB_DATABASE: nicDatabase
       MARIADB_USER: test
       MARIADB_PASSWORD: test
