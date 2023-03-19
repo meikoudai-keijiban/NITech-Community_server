@@ -18,7 +18,7 @@ const databaseConnectionOption: ConnectionOptions = {
     database: process.env.MYSQL_DATABASE,
     // migrations: ["src/migrations/*.ts"],
     migrations: [nicDatabaseMigration1679224123083],
-    // migrationsRun: true,
+    migrationsRun: true,
 }
 
 const connectionOptions: ConnectionOptions[] = [
