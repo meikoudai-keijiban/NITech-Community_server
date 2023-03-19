@@ -6,13 +6,15 @@ require('dotenv').config()
 
 import connectionOptions from "./connectionOptions";
 import { UserController } from "./controllers/UserController";
+import { PostingController } from "./controllers/PostingController";
+import { CommentController } from "./controllers/CommentController";
 import { User } from "./models/User";
 import { BearerStrategy } from "passport-azure-ad";
 import { createBearerStrategy } from "./middlewares/createBearerStrategy";
 
 const PORT = process.env.PORT;
 
-const routes = [UserController];
+const routes = [UserController, PostingController, CommentController];
 
 export default async function main(): Promise<void> {
     try {
