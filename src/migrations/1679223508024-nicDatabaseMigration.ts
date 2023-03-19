@@ -1,7 +1,7 @@
 import { MigrationInterface, QueryRunner } from "typeorm";
 
-export class nicDatabaseMigration1679222283948 implements MigrationInterface {
-    name = 'nicDatabaseMigration1679222283948'
+export class nicDatabaseMigration1679223508024 implements MigrationInterface {
+    name = 'nicDatabaseMigration1679223508024'
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`CREATE TABLE \`comment\` (\`id\` int NOT NULL AUTO_INCREMENT, \`postDate\` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(), \`content\` varchar(255) NOT NULL, \`createdAt\` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(6), \`updatedAt\` datetime(0) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6), \`postingId\` int NULL, \`authorId\` varchar(255) NULL, PRIMARY KEY (\`id\`)) ENGINE=InnoDB`);
