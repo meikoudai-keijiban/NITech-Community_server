@@ -10,7 +10,7 @@ export class Posting {
     @Column()
     public title: string;
 
-    @ManyToOne(() => User)
+    @ManyToOne(() => User, (user) => user.postings)
     @JoinColumn()
     public author: User;
 
@@ -23,7 +23,7 @@ export class Posting {
     @Column()
     public content: string;
 
-    @OneToMany(() => Comment, (comment) => comment.id)
+    @OneToMany(() => Comment, (comment) => comment.posting)
     comments?: Comment[]
 
     @CreateDateColumn({ precision: 0 })

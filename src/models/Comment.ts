@@ -7,11 +7,11 @@ export class Comment {
     @PrimaryGeneratedColumn()
     public id?: string;
 
-    @ManyToOne(() => Posting)
+    @ManyToOne(() => Posting, (posting) => posting.comments)
     @JoinColumn()
     public posting: Posting;
 
-    @ManyToOne(() => User)
+    @ManyToOne(() => User, (user) => user.comments)
     @JoinColumn()
     public author: User;
 
