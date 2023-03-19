@@ -1,0 +1,34 @@
+# build for database and server
+version: 'v1'
+
+services:
+  # データベースコンテナ
+  db:
+    image: mariadb:10.7
+    environment:
+      MARIADB_ROOT_PASSWORD: rootpass
+      MARIADB_DATABASE: nicDatabase
+      MARIADB_USER: test
+      MARIADB_PASSWORD: test
+    volumes:
+      - db-data:/var/lib/mysql
+    expose:
+      - 3306
+    # networks:
+    #   - netnit01
+  # サーバコンテナ
+  server:
+    build: .
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    # networks:
+    #   - netnit01
+
+volumes:
+  db-data:
+
+# networks:
+#   netnit01:
+#     driver: bridge
