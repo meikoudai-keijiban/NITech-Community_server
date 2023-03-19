@@ -1,4 +1,3 @@
-# build for database and server
 # docker compose up -d
 version: 'v1'
 
@@ -7,30 +6,25 @@ services:
   db:
     image: mariadb:10.7
     environment:
-      MARIADB_ROOT_PASSWORD: root
-      MARIADB_DATABASE: nicDatabase
-      MARIADB_USER: test
-      MARIADB_PASSWORD: test
+      MARIADB_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${MYSQL_DATABASE}
+      MARIADB_USER: ${MYSQL_USERNAME}
+      MARIADB_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - db-data:/var/lib/mysql
     expose:
       - 3306
-    # networks:
-    #   - netnit01
+    healthcheck:
+      test: "mysql --password=${MYSQL_ROOT_PASSWORD} --execute 'show databases;'"
 
   # サーバコンテナ
   server:
     build: .
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     ports:
       - "3000:3000"
-    # networks:
-    #   - netnit01
 
 volumes:
   db-data:
-
-# networks:
-#   netnit01:
-#     driver: bridge
