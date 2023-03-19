@@ -13,7 +13,7 @@ const databaseConnectionOption: ConnectionOptions = {
     username: process.env.MYSQL_USERNAME,
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE,
-    migrations: ["scr/migrations/*.ts"],
+    migrations: ["src/migrations/*.ts"],
     migrationsRun: true,
 }
 
