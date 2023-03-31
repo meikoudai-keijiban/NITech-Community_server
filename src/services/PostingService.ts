@@ -1,4 +1,5 @@
-import { Repository, getConnection } from "typeorm";
+import { max } from "class-validator";
+import { Repository, getConnection, LessThanOrEqual } from "typeorm";
 import { Posting } from "../models/Posting";
 
 export class PostingService {
@@ -8,7 +9,7 @@ export class PostingService {
         this.postingRepository = getConnection("nicDatabase").getRepository(Posting);
     }
 
-    public findOnePostingById(id: string): Promise<Posting | null> {
+    public findOnePostingById(id: number): Promise<Posting | null> {
         return this.postingRepository.findOne(
             {
                 where: {
@@ -56,6 +57,18 @@ export class PostingService {
             },
             skip: skip,
             take: take,
+        })
+    }
+
+    public findPostingsBeforeMaxId(n: number, max_id: number): Promise<Posting[]> {
+        return this.postingRepository.find({
+            where: {
+                id: LessThanOrEqual(max_id),
+            },
+            order: {
+                id: "DESC"
+            },
+            take: n,
         })
     }
 
