@@ -1,4 +1,4 @@
-import { Get, Post, JsonController, UseBefore, QueryParam, HttpCode, Body, CurrentUser } from "routing-controllers";
+import { Get, Post, JsonController, UseBefore, Param, QueryParam, HttpCode, Body, CurrentUser } from "routing-controllers";
 import passport from "passport";
 
 import { Posting } from "../models/Posting";
@@ -15,18 +15,19 @@ export class PostingController {
       this.postingService = new PostingService();
     }
 
-    @Get("/postings/:postingID")
+    @Get("/postings")
     @UseBefore(passport.authenticate("oauth-bearer", {session: false}))
     public async getPostingByMaxId(
-      @QueryParam("postingID") postingID: string
-    ): Promise<Posting | null> {
-        return this.postingService.findOnePostingById(postingID);
+      @QueryParam("max_id") max_id: number = 1,
+      @QueryParam("n") n: number = 5,
+    ): Promise<Posting[] | null> {
+        return this.postingService.findPostingsBeforeMaxId(n, max_id);
     }
 
     @Get("/postings/:postingID")
     @UseBefore(passport.authenticate("oauth-bearer", {session: false}))
     public async getPostingDetail(
-      @QueryParam("postingID") postingID: string
+      @Param("postingID") postingID: number
     ): Promise<Posting | null> {
         return this.postingService.findOnePostingById(postingID);
     }
