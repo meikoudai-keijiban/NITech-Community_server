@@ -74,9 +74,10 @@ export class PostingService {
                 content: true,
                 createdAt: true,
                 updatedAt: true,
+                
             },
             relations: {
-                author: true,
+                author: true
             },
             take: num,
         })
