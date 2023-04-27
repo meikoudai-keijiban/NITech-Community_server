@@ -19,9 +19,9 @@ export class PostingController {
     @UseBefore(passport.authenticate("oauth-bearer", {session: false}))
     public async getPostingByMaxId(
       @QueryParam("max_id") max_id: number = 1,
-      @QueryParam("n") n: number = 5,
+      @QueryParam("num") num: number = 5,
     ): Promise<Posting[] | null> {
-        return this.postingService.findPostingsBeforeMaxId(n, max_id);
+        return this.postingService.findPostingsBeforeMaxId(num, max_id);
     }
 
     @Get("/postings/:postingID")
