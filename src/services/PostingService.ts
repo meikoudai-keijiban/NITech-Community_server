@@ -60,7 +60,7 @@ export class PostingService {
         })
     }
 
-    public findPostingsBeforeMaxId(num: number, max_id: number): Promise<Posting[]> {
+    public findPostingsBeforeMaxId(n: number, max_id: number): Promise<Posting[]> {
         return this.postingRepository.find({
             where: {
                 id: LessThanOrEqual(max_id),
@@ -78,7 +78,7 @@ export class PostingService {
             relations: {
                 author: true
             },
-            take: num,
+            take: n,
         })
     }
 
