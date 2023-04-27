@@ -18,13 +18,17 @@ export class UserService {
             where: {
                 id: userID
             },
-            // relations: ["postings", "postings.id" ],
-            // select: {
-            //     id: true,
-            //     name: true,
-            //     department: true,
-            //     postings: true,
-            // },
+            relations: {
+                postings: true,
+                comments: true,
+            },
+            select: {
+                id: true,
+                name: true,
+                department: true,
+                postings: true,
+            },
+            
         });
     }
 
