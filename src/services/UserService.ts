@@ -12,14 +12,25 @@ export class UserService {
         return this.userRepository.save(user);
     }
 
-    public findUserDetail(accountID: string): Promise<User | null> {
+    public findUserDetail(userID: string): Promise<User | null> {
         return this.userRepository.findOne({
             where: {
-                id: accountID
+                id: userID
+            },
+            select: {
+                id: true,
+                name: true,
+                department: true,
             },
             relations: {
-                postings: true,
-                comments: true,
+                postings: {
+                    id: true,
+                    title: true
+                },
+                comments: {
+                    id: true,
+                    content: true,
+                },
             }
         });
     }
