@@ -19,15 +19,15 @@ export class CommentController {
     }
 
     @HttpCode(201)
-    @Post("/postings/:postingID/comments")
+    @Post("/postings/:postingId/comments")
     @UseBefore(passport.authenticate("oauth-bearer", {session: false}))
     public async postComment(
         @CurrentUser({ required: true }) user: User,
-        @Param("postingID") postingID: number,
+        @Param("postingId") postingId: number,
         @Body() rawComment: RawComment
     ): Promise<Comment> {
 
-        const posting: Posting | null = await this.postingService.findOnePostingById(postingID);
+        const posting: Posting | null = await this.postingService.findOnePostingById(postingId);
 
         if(posting) {
             const comment: Comment = {
