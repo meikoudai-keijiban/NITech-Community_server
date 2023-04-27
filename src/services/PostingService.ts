@@ -71,12 +71,12 @@ export class PostingService {
             select: {
                 id: true,
                 title: true,
+                content: true,
+                createdAt: true,
+                updatedAt: true,
             },
             relations: {
-                author: {
-                    name: true,
-                    department: true,
-                }
+                author: true,
             },
             take: num,
         })
