@@ -15,9 +15,11 @@ export class PostingService {
                 where: {
                     id: id
                 },
-                relations: {
-                    comments: true
-                }
+                relations: ["author", "comments", "comments.author"]
+                // relations: {
+                //     author: true,
+                //     comments: true
+                // }
             }
         )
     }
