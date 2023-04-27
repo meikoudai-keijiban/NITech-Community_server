@@ -18,7 +18,8 @@ export class UserService {
                 id: accountID
             },
             relations: {
-                comments: true
+                postings: true,
+                comments: true,
             }
         });
     }
