@@ -68,6 +68,16 @@ export class PostingService {
             order: {
                 id: "DESC"
             },
+            select: {
+                id: true,
+                title: true,
+            },
+            relations: {
+                author: {
+                    name: true,
+                    department: true,
+                }
+            },
             take: num,
         })
     }
