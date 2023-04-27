@@ -18,11 +18,11 @@ export class UserController {
         return user
     }
 
-    @Get("/profiles/:accountID")
+    @Get("/profiles/:userId")
     @UseBefore(passport.authenticate("oauth-bearer", {session: false}))
     public getProfile(
-      @QueryParam("accountID") accountID: string
+      @QueryParam("userId") userId: string
     ): Promise<User | null> {
-      return this.userService.findUserDetail(accountID);
+      return this.userService.findUserDetail(userId);
     }
 }
