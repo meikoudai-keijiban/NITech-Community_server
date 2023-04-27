@@ -23,7 +23,7 @@ export class CommentController {
     @UseBefore(passport.authenticate("oauth-bearer", {session: false}))
     public async postComment(
         @CurrentUser({ required: true }) user: User,
-        @QueryParam("postingID") postingID: string,
+        @QueryParam("postingID") postingID: number,
         @Body() rawComment: RawComment
     ): Promise<Comment> {
 
