@@ -24,12 +24,12 @@ export class PostingController {
         return this.postingService.findPostingsBeforeMaxId(num, max_id);
     }
 
-    @Get("/postings/:postingID")
+    @Get("/postings/:postingId")
     @UseBefore(passport.authenticate("oauth-bearer", {session: false}))
     public async getPostingDetail(
-      @Param("postingID") postingID: number
+      @Param("postingId") postingId: number
     ): Promise<Posting | null> {
-        return this.postingService.findOnePostingById(postingID);
+        return this.postingService.findOnePostingById(postingId);
     }
 
     @Get("/postings/all")
