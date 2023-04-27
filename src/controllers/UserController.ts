@@ -1,4 +1,4 @@
-import { Get, JsonController, UseBefore, CurrentUser, QueryParam } from "routing-controllers";
+import { Get, JsonController, UseBefore, CurrentUser, Param } from "routing-controllers";
 import passport from "passport";
 
 import { User } from "../models/User";
@@ -21,8 +21,11 @@ export class UserController {
     @Get("/profiles/:userId")
     @UseBefore(passport.authenticate("oauth-bearer", {session: false}))
     public getProfile(
-      @QueryParam("userId") userId: string
+      @Param("userId") userId: string
     ): Promise<User | null> {
+      if(!userId){
+        throw new Error("userId is undefined!")
+      }
       return this.userService.findUserDetail(userId);
     }
 }

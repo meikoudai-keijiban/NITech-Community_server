@@ -1,5 +1,6 @@
 import { Repository, getConnection } from "typeorm";
 import { User } from "../models/User";
+import { Posting } from "../models/Posting";
 
 export class UserService {
     private readonly userRepository: Repository<User>;
@@ -22,15 +23,19 @@ export class UserService {
                 name: true,
                 department: true,
             },
+            // relations: {
+            //     postings: {
+            //         id: true,
+            //         title: true,
+            //     },
+            //     comments: {
+            //         id: true,
+            //         content: true,
+            //     },
+            // }
             relations: {
-                postings: {
-                    id: true,
-                    title: true
-                },
-                comments: {
-                    id: true,
-                    content: true,
-                },
+                postings: true,
+                comments: true,
             }
         });
     }
