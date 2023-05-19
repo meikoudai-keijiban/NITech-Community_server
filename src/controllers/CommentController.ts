@@ -18,7 +18,7 @@ export class CommentController {
       this.postingService = new PostingService();
     }
 
-    @HttpCode(201)
+    @HttpCode(204)
     @Post("/postings/:postingId/comments")
     @UseBefore(passport.authenticate("oauth-bearer", {session: false}))
     public async postComment(

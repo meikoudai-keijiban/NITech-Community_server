@@ -51,7 +51,7 @@ export class PostingController {
     return this.postingService.findPartPostings(skip, take);
   }
 
-  @HttpCode(201)
+  @HttpCode(204)
   @Post("/postings")
   @UseBefore(passport.authenticate("oauth-bearer", { session: false }))
   public postPosting(
