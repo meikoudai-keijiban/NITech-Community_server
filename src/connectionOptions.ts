@@ -5,7 +5,7 @@ import { User } from "./models/User";
 import { Posting } from "./models/Posting";
 import { Comment } from "./models/Comment";
 
-import { nicDatabaseMigration1680241228245 } from "./migrations/1680241228245-nicDatabaseMigration";
+import { nicDatabaseMigration1684467135533 } from "./migrations/1684467135533-nicDatabaseMigration";
 
 const databaseConnectionOption: ConnectionOptions = {
     type: "mariadb",
@@ -17,7 +17,7 @@ const databaseConnectionOption: ConnectionOptions = {
     password: process.env.MYSQL_PASSWORD,
     database: process.env.MYSQL_DATABASE,
     // migrations: ["src/migrations/*.ts"],
-    migrations: [nicDatabaseMigration1680241228245],
+    migrations: [ nicDatabaseMigration1684467135533 ],
     migrationsRun: true,
 }
 
