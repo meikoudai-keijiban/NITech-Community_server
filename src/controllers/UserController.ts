@@ -1,5 +1,5 @@
-import { Get, JsonController, UseBefore, CurrentUser, Param } from "routing-controllers";
 import passport from "passport";
+import { Get, JsonController, UseBefore, CurrentUser, Param } from "routing-controllers";
 
 import { User } from "../models/User";
 import { UserService } from "../services/UserService";

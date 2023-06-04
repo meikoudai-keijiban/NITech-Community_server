@@ -5,5 +5,6 @@
     "strictPropertyInitialization": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "removeComments": true,
   }
 }

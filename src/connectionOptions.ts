@@ -1,11 +1,11 @@
 import "reflect-metadata";
 import { ConnectionOptions } from "typeorm";
 
-import { User } from "./models/User";
-import { Posting } from "./models/Posting";
-import { Comment } from "./models/Comment";
-
 import { nicDatabaseMigration1684467135533 } from "./migrations/1684467135533-nicDatabaseMigration";
+import { Comment } from "./models/Comment";
+import { Posting } from "./models/Posting";
+import { User } from "./models/User";
+
 
 const databaseConnectionOption: ConnectionOptions = {
     type: "mariadb",

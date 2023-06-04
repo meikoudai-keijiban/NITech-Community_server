@@ -1,10 +1,10 @@
-import { Get, Post, JsonController, UseBefore, Param, QueryParam, HttpCode, Body, CurrentUser } from "routing-controllers";
 import passport from "passport";
+import { Get, Post, JsonController, UseBefore, Param, QueryParam, HttpCode, Body, CurrentUser } from "routing-controllers";
 
 import { Posting } from "../models/Posting";
 import { RawPosting } from "../models/RawPosting";
-import { PostingService } from "../services/PostingService";
 import { User } from "../models/User";
+import { PostingService } from "../services/PostingService";
 
 
 @JsonController()
@@ -19,7 +19,7 @@ export class PostingController {
   @UseBefore(passport.authenticate("oauth-bearer", { session: false }))
   public async getPostingByMaxId(
     @QueryParam("max_id") max_id: number,
-    @QueryParam("n") n: number = 5,
+    @QueryParam("n") n = 5,
   ): Promise<Posting[] | null> {
     if (max_id) {
       return this.postingService.findPostingsBeforeMaxId(n, max_id);
@@ -45,8 +45,8 @@ export class PostingController {
   @Get("/postings/part")
   @UseBefore(passport.authenticate("oauth-bearer", { session: false }))
   public async getPartPostings(
-    @QueryParam("skip") skip: number = 0,
-    @QueryParam('take') take: number = 10,
+    @QueryParam("skip") skip = 0,
+    @QueryParam('take') take = 10,
   ): Promise<Posting[]> {
     return this.postingService.findPartPostings(skip, take);
   }

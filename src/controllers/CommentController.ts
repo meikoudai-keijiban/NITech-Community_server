@@ -1,10 +1,10 @@
-import { Get, Post, JsonController, UseBefore, CurrentUser, HttpCode, Param, Body } from "routing-controllers";
 import passport from "passport";
+import { Get, Post, JsonController, UseBefore, CurrentUser, HttpCode, Param, Body } from "routing-controllers";
 
-import { User } from "../models/User";
 import { Comment } from "../models/Comment";
 import { Posting } from "../models/Posting";
 import { RawComment } from "../models/RawComment";
+import { User } from "../models/User";
 import { CommentService } from "../services/CommentServics";
 import { PostingService } from "../services/PostingService";
 

@@ -1,6 +1,6 @@
 import { Repository, getConnection } from "typeorm";
-import { User } from "../models/User";
 import { Posting } from "../models/Posting";
+import { User } from "../models/User";
 
 export class UserService {
     private readonly userRepository: Repository<User>;

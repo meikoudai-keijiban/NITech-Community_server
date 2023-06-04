@@ -10,9 +10,9 @@
 
 import "reflect-metadata"
 import { DataSource } from "typeorm"
-import { User } from "./models/User"
-import { Posting } from "./models/Posting"
 import { Comment } from "./models/Comment"
+import { Posting } from "./models/Posting"
+import { User } from "./models/User"
 
 export const AppDataSource = new DataSource({
     type: "mariadb",

@@ -1,16 +1,16 @@
 import "reflect-metadata"
 import passport from "passport";
+import { BearerStrategy } from "passport-azure-ad";
 import { createExpressServer, Action } from "routing-controllers";
 import { createConnections } from "typeorm"
 require('dotenv').config()
 
 import connectionOptions from "./connectionOptions";
-import { UserController } from "./controllers/UserController";
-import { PostingController } from "./controllers/PostingController";
 import { CommentController } from "./controllers/CommentController";
-import { User } from "./models/User";
-import { BearerStrategy } from "passport-azure-ad";
+import { PostingController } from "./controllers/PostingController";
+import { UserController } from "./controllers/UserController";
 import { createBearerStrategy } from "./middlewares/createBearerStrategy";
+import { User } from "./models/User";
 
 const PORT = process.env.PORT;
 

@@ -1,11 +1,11 @@
 import { Request } from "express";
 import { BearerStrategy, ITokenPayload, VerifyCallback, IBearerStrategyOptionWithRequest } from "passport-azure-ad";
 import { UserMaker } from "../makers/UserMaker";
-import { User } from "../models/User";
-import { AzureADUser } from "../models/AzureADUser";
-import { AzureADUserNetwork } from "./AzureADUserNetwork";
 import { AzureADToken } from "../models/AzureADToken";
+import { AzureADUser } from "../models/AzureADUser";
+import { User } from "../models/User";
 import { AzureADTokenNetwork } from "./AzureADTokenNetwork";
+import { AzureADUserNetwork } from "./AzureADUserNetwork";
 
 
 const bearerStrategyOption: IBearerStrategyOptionWithRequest = {
