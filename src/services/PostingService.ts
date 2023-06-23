@@ -1,4 +1,3 @@
-import { max } from "class-validator";
 import { Repository, getConnection, LessThanOrEqual } from "typeorm";
 import { Posting } from "../models/Posting";
 

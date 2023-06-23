@@ -3,7 +3,7 @@ import passport from "passport";
 import { BearerStrategy } from "passport-azure-ad";
 import { createExpressServer, Action } from "routing-controllers";
 import { createConnections } from "typeorm"
-require('dotenv').config()
+import 'dotenv/config'
 
 import connectionOptions from "./connectionOptions";
 import { CommentController } from "./controllers/CommentController";
@@ -12,13 +12,17 @@ import { UserController } from "./controllers/UserController";
 import { createBearerStrategy } from "./middlewares/createBearerStrategy";
 import { User } from "./models/User";
 
-const PORT = process.env.PORT;
+const PORT: string | undefined = process.env.PORT;
 
 const routes = [UserController, PostingController, CommentController];
 
 export default async function main(): Promise<void> {
+    if (!PORT) {
+        throw new Error("Port is undefined")
+    }
+
     try {
-        const app = createExpressServer(
+        const app: any = createExpressServer(
             {
                 controllers: routes,
                 currentUserChecker: (action: Action): User => {
@@ -27,7 +31,7 @@ export default async function main(): Promise<void> {
             }
         );
 
-        await createConnections(connectionOptions).then(connection => {
+        await createConnections(connectionOptions).then(() => {
             console.info(`Connected database successfully!`);
         }).catch(error => console.log(error));
 

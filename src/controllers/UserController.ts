@@ -14,7 +14,7 @@ export class UserController {
 
     @Get("/test_api")
     @UseBefore(passport.authenticate("oauth-bearer", {session: false})) //調べよ
-    public async getTest(@CurrentUser({ required: true }) user: User): Promise<User> {
+    public getTest(@CurrentUser({ required: true }) user: User): User {
         return user
     }
 

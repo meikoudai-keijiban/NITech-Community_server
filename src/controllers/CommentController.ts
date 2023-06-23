@@ -1,5 +1,5 @@
 import passport from "passport";
-import { Get, Post, JsonController, UseBefore, CurrentUser, HttpCode, Param, Body } from "routing-controllers";
+import { Post, JsonController, UseBefore, CurrentUser, HttpCode, Param, Body } from "routing-controllers";
 
 import { Comment } from "../models/Comment";
 import { Posting } from "../models/Posting";
@@ -20,7 +20,7 @@ export class CommentController {
 
     @HttpCode(204)
     @Post("/postings/:postingId/comments")
-    @UseBefore(passport.authenticate("oauth-bearer", {session: false}))
+    @UseBefore(passport.authenticate("oauth-bearer", {session: false})) // eslint-disable-line @typescript-eslint/no-unsafe-argument
     public async postComment(
         @CurrentUser({ required: true }) user: User,
         @Param("postingId") postingId: number,

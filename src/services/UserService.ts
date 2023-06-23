@@ -1,5 +1,4 @@
 import { Repository, getConnection } from "typeorm";
-import { Posting } from "../models/Posting";
 import { User } from "../models/User";
 
 export class UserService {
