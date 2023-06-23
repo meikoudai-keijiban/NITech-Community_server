@@ -22,11 +22,11 @@ export default async function main(): Promise<void> {
     }
 
     try {
-        const app: any = createExpressServer(
+        const app = createExpressServer( // eslint-disable-line @typescript-eslint/no-unsafe-assignment
             {
                 controllers: routes,
                 currentUserChecker: (action: Action): User => {
-                    return action.request.user as User;
+                    return action.request.user as User; // eslint-disable-line @typescript-eslint/no-unsafe-member-access
                 }
             }
         );
@@ -35,11 +35,11 @@ export default async function main(): Promise<void> {
             console.info(`Connected database successfully!`);
         }).catch(error => console.log(error));
 
-        app.use(passport.initialize())
+        app.use(passport.initialize()) // eslint-disable-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         const bearerStrategy: BearerStrategy = createBearerStrategy();
         passport.use(bearerStrategy)
 
-        app.listen(PORT, () => {
+        app.listen(PORT, () => { // eslint-disable-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
             console.info(`Starting server on http://localhost:${PORT}`);
         });
 

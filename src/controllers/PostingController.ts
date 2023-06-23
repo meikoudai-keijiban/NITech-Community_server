@@ -16,7 +16,7 @@ export class PostingController {
   }
 
   @Get("/postings")
-  @UseBefore(passport.authenticate("oauth-bearer", { session: false }))
+  @UseBefore(passport.authenticate("oauth-bearer", { session: false })) // eslint-disable-line @typescript-eslint/no-unsafe-argument
   public async getPostingByMaxId(
     @QueryParam("max_id") max_id: number,
     @QueryParam("n") n = 5,
@@ -29,7 +29,7 @@ export class PostingController {
   }
 
   @Get("/postings/:postingId")
-  @UseBefore(passport.authenticate("oauth-bearer", { session: false }))
+  @UseBefore(passport.authenticate("oauth-bearer", { session: false })) // eslint-disable-line @typescript-eslint/no-unsafe-argument
   public async getPostingDetail(
     @Param("postingId") postingId: number
   ): Promise<Posting | null> {
@@ -37,13 +37,13 @@ export class PostingController {
   }
 
   @Get("/postings/all")
-  @UseBefore(passport.authenticate("oauth-bearer", { session: false }))
+  @UseBefore(passport.authenticate("oauth-bearer", { session: false })) // eslint-disable-line @typescript-eslint/no-unsafe-argument
   public async getAllPostings(): Promise<Posting[]> {
     return this.postingService.findAllPostings();
   }
 
   @Get("/postings/part")
-  @UseBefore(passport.authenticate("oauth-bearer", { session: false }))
+  @UseBefore(passport.authenticate("oauth-bearer", { session: false })) // eslint-disable-line @typescript-eslint/no-unsafe-argument
   public async getPartPostings(
     @QueryParam("skip") skip = 0,
     @QueryParam('take') take = 10,
@@ -53,7 +53,7 @@ export class PostingController {
 
   @HttpCode(204)
   @Post("/postings")
-  @UseBefore(passport.authenticate("oauth-bearer", { session: false }))
+  @UseBefore(passport.authenticate("oauth-bearer", { session: false })) // eslint-disable-line @typescript-eslint/no-unsafe-argument
   public postPosting(
     @CurrentUser({ required: true }) user: User,
     @Body() rawPosting: RawPosting,

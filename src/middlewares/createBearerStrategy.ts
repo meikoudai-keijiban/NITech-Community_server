@@ -25,7 +25,7 @@ function createBearerStrategyOption(tenant_id: string | undefined, client_id: st
 
 export function createBearerStrategy(): BearerStrategy {
     const bearerStrategyOption: IBearerStrategyOptionWithRequest = createBearerStrategyOption(process.env.AZURE_AD_TENANT_ID, process.env.AZURE_AD_CLIENT_ID)
-    return new BearerStrategy(bearerStrategyOption, bearerStrategyVerifyFunction);
+    return new BearerStrategy(bearerStrategyOption, bearerStrategyVerifyFunction); // eslint-disable-line @typescript-eslint/no-misused-promises
 }
 
 async function bearerStrategyVerifyFunction(req: Request, token: ITokenPayload, done: VerifyCallback): Promise<void> {
@@ -35,7 +35,7 @@ async function bearerStrategyVerifyFunction(req: Request, token: ITokenPayload, 
         const azureADTokenNetwork: AzureADTokenNetwork = new AzureADTokenNetwork();
 
         const azureADToken: AzureADToken = await azureADTokenNetwork.acquire(
-            req.headers.authorization!.split(" ")[1],
+            req.headers.authorization!.split(" ")[1], // eslint-disable-line @typescript-eslint/no-non-null-assertion
             "User.Read"
         )
 

@@ -13,13 +13,13 @@ export class UserController {
     }
 
     @Get("/test_api")
-    @UseBefore(passport.authenticate("oauth-bearer", {session: false})) //調べよ
+    @UseBefore(passport.authenticate("oauth-bearer", {session: false})) // eslint-disable-line @typescript-eslint/no-unsafe-argument
     public getTest(@CurrentUser({ required: true }) user: User): User {
         return user
     }
 
     @Get("/profiles/:userId")
-    @UseBefore(passport.authenticate("oauth-bearer", {session: false}))
+    @UseBefore(passport.authenticate("oauth-bearer", {session: false})) // eslint-disable-line @typescript-eslint/no-unsafe-argument
     public getProfile(
       @Param("userId") userId: string
     ): Promise<User | null> {
