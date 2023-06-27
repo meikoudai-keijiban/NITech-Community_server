@@ -19,6 +19,7 @@ const databaseConnectionOption: ConnectionOptions = {
     // migrations: ["src/migrations/*.ts"],
     migrations: [ nicDatabaseMigration1684467135533 ],
     migrationsRun: true,
+    synchronize: true,
 }
 
 const connectionOptions: ConnectionOptions[] = [
