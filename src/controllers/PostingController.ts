@@ -18,7 +18,7 @@ export class PostingController {
   @Get("/postings")
   @UseBefore(passport.authenticate("oauth-bearer", { session: false })) // eslint-disable-line @typescript-eslint/no-unsafe-argument
   public async getPostingByMaxId(
-    @QueryParam("max_id") max_id: number,
+    @QueryParam("max_id") max_id: number | null,
     @QueryParam("n") n = 5,
   ): Promise<Posting[] | null> {
     if (max_id != null) {
