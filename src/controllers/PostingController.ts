@@ -21,7 +21,7 @@ export class PostingController {
     @QueryParam("max_id") max_id: number,
     @QueryParam("n") n = 5,
   ): Promise<Posting[] | null> {
-    if (max_id) {
+    if (max_id != null) {
       return this.postingService.findPostingsBeforeMaxId(n, max_id);
     }else {
       return this.postingService.findPostingsLatest(n)
