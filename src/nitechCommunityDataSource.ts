@@ -10,21 +10,23 @@
 
 import "reflect-metadata"
 import { DataSource } from "typeorm"
+import { nicDatabaseMigration1684467135533 } from "./migrations/1684467135533-nicDatabaseMigration";
 import { Comment } from "./models/Comment"
 import { Posting } from "./models/Posting"
 import { User } from "./models/User"
 
-export const AppDataSource = new DataSource({
+
+export const nitechCommunityDataSource = new DataSource({
     type: "mariadb",
-    host: "localhost",
-    port: 3306,
-    username: "root",
-    password: "root",
-    database: "nicDatabase",
+    database: process.env.MYSQL_DATABASE,
+    host: process.env.MYSQL_HOST,
+    port: Number(process.env.MYSQL_PORT),
+    username: process.env.MYSQL_USERNAME,
+    password: process.env.MYSQL_PASSWORD,
     synchronize: true,
     logging: false,
     entities: [User, Posting, Comment],
-    migrations: ['dist/migrations/*.js'],
+    migrations: [nicDatabaseMigration1684467135533],
     // migrations: ['src/migrations/*.ts'],
     // cli: {
     //     "migrationsDir": "migration"

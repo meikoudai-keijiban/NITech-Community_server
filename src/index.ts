@@ -2,15 +2,14 @@ import "reflect-metadata"
 import passport from "passport";
 import { BearerStrategy } from "passport-azure-ad";
 import { createExpressServer, Action } from "routing-controllers";
-import { createConnections } from "typeorm"
 import 'dotenv/config'
 
-import connectionOptions from "./connectionOptions";
 import { CommentController } from "./controllers/CommentController";
 import { PostingController } from "./controllers/PostingController";
 import { UserController } from "./controllers/UserController";
 import { createBearerStrategy } from "./middlewares/createBearerStrategy";
 import { User } from "./models/User";
+import { nitechCommunityDataSource } from "./nitechCommunityDataSource";
 
 const PORT: string | undefined = process.env.PORT;
 
@@ -31,9 +30,11 @@ export default async function main(): Promise<void> {
             }
         );
 
-        await createConnections(connectionOptions).then(() => {
-            console.info(`Connected database successfully!`);
-        }).catch(error => console.log(error));
+        await Promise.all([ //Promise.allを使って，データベース接続の並列処理
+            nitechCommunityDataSource.initialize(),
+        ])
+            .then(()=>console.log("Data Source has been initialized!"))
+            .catch((error) => console.error("Error during Data Source initialization", error));
 
         app.use(passport.initialize()) // eslint-disable-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         const bearerStrategy: BearerStrategy = createBearerStrategy();
