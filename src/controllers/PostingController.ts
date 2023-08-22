@@ -18,10 +18,10 @@ export class PostingController {
   @Get("/postings")
   @UseBefore(passport.authenticate("oauth-bearer", { session: false })) // eslint-disable-line @typescript-eslint/no-unsafe-argument
   public async getPostingByMaxId(
-    @QueryParam("max_id") max_id: number | null,
+    @QueryParam("max_id") max_id: number | undefined,
     @QueryParam("n") n = 5,
-  ): Promise<Posting[] | null> {
-    if (max_id != null) {
+  ): Promise<Posting[]> {
+    if (max_id != undefined) {
       return this.postingService.findPostingsBeforeMaxId(n, max_id);
     }else {
       return this.postingService.findPostingsLatest(n)
@@ -32,7 +32,7 @@ export class PostingController {
   @UseBefore(passport.authenticate("oauth-bearer", { session: false })) // eslint-disable-line @typescript-eslint/no-unsafe-argument
   public async getPostingDetail(
     @Param("postingId") postingId: number
-  ): Promise<Posting | null> {
+  ): Promise<Posting | undefined> {
     return this.postingService.findOnePostingById(postingId);
   }
 

@@ -8,19 +8,22 @@ export class PostingService {
         this.postingRepository = getConnection("nicDatabase").getRepository(Posting);
     }
 
-    public findOnePostingById(id: number): Promise<Posting | null> {
-        return this.postingRepository.findOne(
+    public async findOnePostingById(id: number): Promise<Posting | undefined> {
+        const posting: Posting | null = await this.postingRepository.findOne(
             {
                 where: {
                     id: id
                 },
                 relations: ["author", "comments", "comments.author"]
-                // relations: {
-                //     author: true,
-                //     comments: true
-                // }
+                // relations: {author: true, comments: true}
             }
-        )
+        );
+
+        if (posting) {
+            return posting;
+        } else {
+            return undefined;
+        }
     }
 
     public findAllPostings(): Promise<Posting[]> {
@@ -74,7 +77,7 @@ export class PostingService {
                 title: true,
                 createdAt: true,
                 updatedAt: true,
-                
+
             },
             relations: {
                 author: true
@@ -93,7 +96,7 @@ export class PostingService {
                 title: true,
                 createdAt: true,
                 updatedAt: true,
-                
+
             },
             relations: {
                 author: true
