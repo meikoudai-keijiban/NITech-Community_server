@@ -27,8 +27,4 @@ export const nitechCommunityDataSource = new DataSource({
     logging: false,
     entities: [User, Posting, Comment],
     migrations: [nicDatabaseMigration1684467135533],
-    // migrations: ['src/migrations/*.ts'],
-    // cli: {
-    //     "migrationsDir": "migration"
-    // }
 })
