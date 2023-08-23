@@ -30,11 +30,7 @@ export default async function main(): Promise<void> {
             }
         );
 
-        await Promise.all([ //Promise.allを使って，データベース接続の並列処理
-            nitechCommunityDataSource.initialize(),
-        ])
-            .then(()=>console.log("Data Source has been initialized!"))
-            .catch((error) => console.error("Error during Data Source initialization", error));
+        await nitechCommunityDataSource.initialize(),
 
         app.use(passport.initialize()) // eslint-disable-line @typescript-eslint/no-unsafe-member-access, @typescript-eslint/no-unsafe-call
         const bearerStrategy: BearerStrategy = createBearerStrategy();
