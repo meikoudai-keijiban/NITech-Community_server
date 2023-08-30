@@ -21,11 +21,12 @@ export class PostingController {
     @QueryParam("max_id") max_id: number | undefined,
     @QueryParam("n") n = 5,
   ): Promise<Posting[]> {
-    if (max_id != undefined) {
-      return this.postingService.findPostingsBeforeMaxId(n, max_id);
-    }else {
-      return this.postingService.findPostingsLatest(n)
+    if (max_id === undefined) {
+      const IntMAX: number = 2147483647;
+      max_id = IntMAX;
     }
+
+    return this.postingService.findPostingsBeforeMaxId(n, max_id);
   }
 
   @Get("/postings/:postingId")
