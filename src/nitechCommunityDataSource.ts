@@ -23,8 +23,8 @@ export const nitechCommunityDataSource = new DataSource({
     port: Number(process.env.MYSQL_PORT),
     username: process.env.MYSQL_USERNAME,
     password: process.env.MYSQL_PASSWORD,
-    synchronize: true,
     logging: false,
+    migrationsRun: true,
     entities: [User, Posting, Comment],
     migrations: [nicDatabaseMigration1684467135533],
 })
