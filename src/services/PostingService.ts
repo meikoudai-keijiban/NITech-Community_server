@@ -1,11 +1,12 @@
-import { Repository, getConnection, LessThanOrEqual } from "typeorm";
+import { Repository, LessThanOrEqual } from "typeorm";
 import { Posting } from "../models/Posting";
+import { nitechCommunityDataSource } from "../nitechCommunityDataSource";
 
 export class PostingService {
     private readonly postingRepository: Repository<Posting>;
 
     constructor() {
-        this.postingRepository = getConnection("nicDatabase").getRepository(Posting);
+        this.postingRepository = nitechCommunityDataSource.getRepository(Posting);
     }
 
     public findOnePostingById(id: number): Promise<Posting | null> {

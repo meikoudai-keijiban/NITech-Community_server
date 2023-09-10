@@ -1,11 +1,12 @@
-import { Repository, getConnection } from "typeorm";
+import { Repository } from "typeorm";
 import { User } from "../models/User";
+import { nitechCommunityDataSource } from "../nitechCommunityDataSource";
 
 export class UserService {
     private readonly userRepository: Repository<User>;
 
     constructor() {
-        this.userRepository = getConnection("nicDatabase").getRepository(User);
+        this.userRepository = nitechCommunityDataSource.getRepository(User);
     }
 
     public save(user: User): Promise<User> {

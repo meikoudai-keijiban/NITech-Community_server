@@ -1,11 +1,12 @@
-import { Repository, getConnection } from "typeorm";
+import { Repository } from "typeorm";
 import { Comment } from "../models/Comment";
+import { nitechCommunityDataSource } from "../nitechCommunityDataSource";
 
 export class CommentService {
     private readonly commentRepository: Repository<Comment>;
 
     constructor() {
-        this.commentRepository = getConnection("nicDatabase").getRepository(Comment);
+        this.commentRepository = nitechCommunityDataSource.getRepository(Comment);
     }
 
     public saveComment(comment: Comment): Promise<Comment> {
