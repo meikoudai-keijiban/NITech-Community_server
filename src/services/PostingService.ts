@@ -84,25 +84,6 @@ export class PostingService {
         })
     }
 
-    public findPostingsLatest(n: number): Promise<Posting[]> {
-        return this.postingRepository.find({
-            order: {
-                id: "DESC"
-            },
-            select: {
-                id: true,
-                title: true,
-                createdAt: true,
-                updatedAt: true,
-
-            },
-            relations: {
-                author: true
-            },
-            take: n,
-        })
-    }
-
     public savePosting(posting: Posting): Promise<Posting> {
         return this.postingRepository.save(posting);
     }
