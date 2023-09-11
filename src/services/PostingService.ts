@@ -15,7 +15,6 @@ export class PostingService {
                     id: id
                 },
                 relations: ["author", "comments", "comments.author"]
-                // relations: {author: true, comments: true}
             }
         );
 
@@ -77,7 +76,6 @@ export class PostingService {
                 title: true,
                 createdAt: true,
                 updatedAt: true,
-
             },
             relations: {
                 author: true
@@ -108,5 +106,4 @@ export class PostingService {
     public savePosting(posting: Posting): Promise<Posting> {
         return this.postingRepository.save(posting);
     }
-
 }

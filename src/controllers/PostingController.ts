@@ -69,5 +69,4 @@ export class PostingController {
 
     return this.postingService.savePosting(posting);
   }
-
 }
