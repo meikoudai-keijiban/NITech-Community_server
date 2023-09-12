@@ -22,7 +22,7 @@ export class UserController {
     @UseBefore(passport.authenticate("oauth-bearer", {session: false})) // eslint-disable-line @typescript-eslint/no-unsafe-argument
     public getProfile(
       @Param("userId") userId: string
-    ): Promise<User | null> {
+    ): Promise<User | undefined> {
       if(!userId){
         throw new Error("userId is undefined!")
       }

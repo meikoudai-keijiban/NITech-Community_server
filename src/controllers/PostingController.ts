@@ -10,29 +10,27 @@ import { PostingService } from "../services/PostingService";
 @JsonController()
 export class PostingController {
   private readonly postingService: PostingService;
+  private readonly intMAX: number;
 
   constructor() {
     this.postingService = new PostingService();
+    this.intMAX = 2147483647; // データベースのINT型の最大値
   }
 
   @Get("/postings")
   @UseBefore(passport.authenticate("oauth-bearer", { session: false })) // eslint-disable-line @typescript-eslint/no-unsafe-argument
   public async getPostingByMaxId(
-    @QueryParam("max_id") max_id: number | null,
+    @QueryParam("max_id") max_id: number = this.intMAX,
     @QueryParam("n") n = 5,
-  ): Promise<Posting[] | null> {
-    if (max_id != null) {
-      return this.postingService.findPostingsBeforeMaxId(n, max_id);
-    }else {
-      return this.postingService.findPostingsLatest(n)
-    }
+  ): Promise<Posting[]> {
+    return this.postingService.findPostingsBeforeMaxId(n, max_id);
   }
 
   @Get("/postings/:postingId")
   @UseBefore(passport.authenticate("oauth-bearer", { session: false })) // eslint-disable-line @typescript-eslint/no-unsafe-argument
   public async getPostingDetail(
     @Param("postingId") postingId: number
-  ): Promise<Posting | null> {
+  ): Promise<Posting | undefined> {
     return this.postingService.findOnePostingById(postingId);
   }
 
@@ -68,5 +66,4 @@ export class PostingController {
 
     return this.postingService.savePosting(posting);
   }
-
 }

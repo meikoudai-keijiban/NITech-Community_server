@@ -10,7 +10,7 @@ export class UserMaker {
     }
 
     public async make(azureADUser: AzureADUser): Promise<User> {
-        const isUser: User | null = await this.userService.userExists(azureADUser.officeLocation);
+        const isUser: User | undefined = await this.userService.userExists(azureADUser.officeLocation);
 
         if (isUser) {
             return isUser;

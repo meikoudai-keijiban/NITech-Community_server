@@ -12,8 +12,8 @@ export class UserService {
         return this.userRepository.save(user);
     }
 
-    public findUserDetail(userID: string): Promise<User | null> {
-        return this.userRepository.findOne({
+    public async findUserDetail(userID: string): Promise<User | undefined> {
+        const user: User | null = await this.userRepository.findOne({
             where: {
                 id: userID
             },
@@ -27,17 +27,26 @@ export class UserService {
                 department: true,
                 postings: true,
             },
-            
         });
+
+        if (user) {
+            return user;
+        } else {
+            return undefined;
+        }
     }
 
-    public userExists(id: string): Promise<User | null> {
-        return this.userRepository.findOne({
+    public async userExists(id: string): Promise<User | undefined> {
+        const user: User | null = await this.userRepository.findOne({
             where: {
                 id: id
             }
         })
-    }
 
-    
+        if (user) {
+            return user;
+        } else {
+            return undefined;
+        }
+    }
 }
