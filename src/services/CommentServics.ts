@@ -12,5 +12,4 @@ export class CommentService {
     public saveComment(comment: Comment): Promise<Comment> {
         return this.commentRepository.save(comment);
     }
-    
 }

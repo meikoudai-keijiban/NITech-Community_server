@@ -27,7 +27,7 @@ export class CommentController {
         @Body() rawComment: RawComment
     ): Promise<Comment> {
 
-        const posting: Posting | null = await this.postingService.findOnePostingById(postingId);
+        const posting: Posting | undefined = await this.postingService.findOnePostingById(postingId);
 
         if(posting) {
             const comment: Comment = {
