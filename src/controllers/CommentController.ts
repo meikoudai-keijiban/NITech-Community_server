@@ -1,5 +1,5 @@
 import passport from "passport";
-import { Post, JsonController, UseBefore, CurrentUser, HttpCode, Param, Body } from "routing-controllers";
+import { Post, JsonController, UseBefore, CurrentUser, HttpCode, Param, Body, NotFoundError } from "routing-controllers";
 
 import { Comment } from "../models/Comment";
 import { Posting } from "../models/Posting";
@@ -38,9 +38,7 @@ export class CommentController {
             }
             return this.commentService.saveComment(comment)
         } else{
-            throw new Error("can't find the posting by the postingID")
+            throw new NotFoundError("can't find the posting by the postingID")
         }
     }
-
-
 }
