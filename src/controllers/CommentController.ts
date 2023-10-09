@@ -1,5 +1,5 @@
 import passport from "passport";
-import { Post, JsonController, UseBefore, CurrentUser, HttpCode, Param, Body } from "routing-controllers";
+import { Post, JsonController, UseBefore, CurrentUser, HttpCode, Param, Body, NotFoundError } from "routing-controllers";
 
 import { Comment } from "../models/Comment";
 import { Posting } from "../models/Posting";
@@ -14,13 +14,13 @@ export class CommentController {
     private readonly postingService: PostingService;
 
     constructor() {
-      this.commentService = new CommentService();
-      this.postingService = new PostingService();
+        this.commentService = new CommentService();
+        this.postingService = new PostingService();
     }
 
     @HttpCode(204)
     @Post("/postings/:postingId/comments")
-    @UseBefore(passport.authenticate("oauth-bearer", {session: false})) // eslint-disable-line @typescript-eslint/no-unsafe-argument
+    @UseBefore(passport.authenticate("oauth-bearer", { session: false })) // eslint-disable-line @typescript-eslint/no-unsafe-argument
     public async postComment(
         @CurrentUser({ required: true }) user: User,
         @Param("postingId") postingId: number,
@@ -29,18 +29,17 @@ export class CommentController {
 
         const posting: Posting | undefined = await this.postingService.findOnePostingById(postingId);
 
-        if(posting) {
-            const comment: Comment = {
-                posting: posting,
-                author: user,
-                postDate: new Date(),
-                content: rawComment.content,
-            }
-            return this.commentService.saveComment(comment)
-        } else{
-            throw new Error("can't find the posting by the postingID")
+        if (!posting) {
+            throw new NotFoundError("can't find the posting by the postingID");
         }
+
+        const comment: Comment = {
+            posting: posting,
+            author: user,
+            postDate: new Date(),
+            content: rawComment.content,
+        };
+
+        return this.commentService.saveComment(comment);
     }
-
-
 }
