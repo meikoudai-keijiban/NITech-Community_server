@@ -12,7 +12,6 @@ USER node
 WORKDIR /home/node/
 COPY --from=builder /home/node/dist/ dist/
 COPY --from=builder /home/node/package.json /home/node/package-lock.json ./
-COPY --from=builder /home/node/.env ./
 RUN npm install --ignore-script --production
 EXPOSE 3000
 CMD ["npm", "start"]
